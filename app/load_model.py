@@ -13,12 +13,12 @@ logging.basicConfig(level=logging.INFO, format="%(asctime)s - %(levelname)s - %(
 
 # === MLFlow ===
 MLFLOW_TRACKING_URI = os.getenv("MLFLOW_TRACKING_URI", "http://0.0.0.0:4000")
-MODEL_URI = os.getenv("MLFLOW_MODEL_URI")
+MLFLOW_MODEL_URI = os.getenv("MLFLOW_MODEL_URI")
 #MODEL_URI = os.getenv("MLFLOW_MODEL_URI", "models:/fraud_detector_RFC_")
 
 
 # === LOAD MODEL from MLFlow function ===
-def load_mlflow_model(tracking_uri: str = MLFLOW_TRACKING_URI, model_uri: str = MODEL_URI):
+def load_mlflow_model(tracking_uri: str = MLFLOW_TRACKING_URI, model_uri: str = MLFLOW_MODEL_URI):
     
     logging.info(f"🚀 Chargement du modèle MLflow depuis {tracking_uri} avec le modèle URI {model_uri}...")
     mlflow.set_tracking_uri(tracking_uri)
