@@ -1,3 +1,12 @@
 boto3
 mlflow==2.21.3
 psycopg2-binary
+scikit-learn==1.4.2
+requests>=2.31.0,<3
+pandas 
+dotenv
+ipykernel
+seaborn
+xgboost
+pytest
+sqlalchemy
