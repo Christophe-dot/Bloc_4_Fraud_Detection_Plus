@@ -9,3 +9,4 @@ ipykernel
 seaborn
 xgboost
 pytest
+sqlalchemy
