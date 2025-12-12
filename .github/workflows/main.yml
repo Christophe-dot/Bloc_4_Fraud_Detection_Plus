@@ -1,0 +1,80 @@
+name: Automatic deployment #← change with your pref 
+
+on:
+  push:
+    branches:
+      - main
+
+jobs:
+
+  implementing_tests:  #← change with your pref
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v3
+      - uses: actions/setup-python@v4
+        with:
+          python-version: "3.10"  
+
+      - name: Install dependencies
+        run: |
+          pip install --upgrade pip #← change with your pref 
+          pip install pytest pytest-html pytest-json-report httpx psycopg2-binary python-dotenv #← change with your pref 
+          pip install boto3 botocore  #← change with your pref 
+          pip install mlflow scikit-learn pandas numpy #← change with your pref 
+          pip install -r "Bloc4 - Final project/Projet/Architecture/App/Dockers/fastapi/requirements.txt" #← change with your pref 
+
+      - name: Debug environment #← change with your pref 
+        run: | 
+          echo "🔍 Environment check:" #← change with your pref 
+          echo "MLFLOW_TRACKING_URI: ${{ secrets.MLFLOW_TRACKING_URI != '' && 'SET' || 'NOT SET' }}" #← change with your pref 
+          echo "HF_TOKEN set: ${{ secrets.HF_TOKEN != '' }}" #← change with your pref 
+          echo "NEONDB set: ${{ secrets.NEONDB_CONNECTION_STRING != '' }}" #← change with your pref 
+          echo "AWS_ACCESS_KEY_ID set: ${{ secrets.AWS_ACCESS_KEY_ID != '' }}" #← change with your pref 
+          echo "AWS_SECRET_ACCESS_KEY set: ${{ secrets.AWS_SECRET_ACCESS_KEY != '' }}" #← change with your pref 
+          echo "AWS_DEFAULT_REGION set: ${{ secrets.AWS_DEFAULT_REGION != '' }}" #← change with your pref 
+          python -c "import mlflow; print(f'MLflow version: {mlflow.__version__}')" #← change with your pref 
+          python -c "import boto3; print(f'Boto3 version: {boto3.__version__}')" #← change with your pref 
+          python -c "import sys; print(f'Python: {sys.version}')" #← change with your pref 
+
+      - name: Generate timestamp
+        id: timestamp
+        run: echo "date=$(date +'%Y%m%d_%H%M%S')" >> $GITHUB_OUTPUT
+
+      - name: Run  tests #← change with your pref 
+        continue-on-error: true #← change with your pref 
+        run: |
+          # Export ALL environment variables
+          export NEONDB_CONNECTION_STRING="${{ secrets.NEONDB_CONNECTION_STRING }}" #← change with your pref 
+          export MLFLOW_TRACKING_URI="${{ secrets.MLFLOW_TRACKING_URI }}" #← change with your pref 
+          export AWS_ACCESS_KEY_ID="${{ secrets.AWS_ACCESS_KEY_ID }}" #← change with your pref 
+          export AWS_SECRET_ACCESS_KEY="${{ secrets.AWS_SECRET_ACCESS_KEY }}" #← change with your pref 
+          export AWS_DEFAULT_REGION="${{ secrets.AWS_DEFAULT_REGION }}" #← change with your pref 
+
+          # Run tests
+          pytest "Bloc_4_Fraud_Detection_Plus/tests/" \
+            # --html="Bloc4 - Final project/Projet/Architecture/Tests/test_results/unit_test_report_${{ steps.timestamp.outputs.date }}.html" \
+            # --self-contained-html \
+            -v -s \
+            --tb=short \
+            --junit-xml="Bloc_4_Fraud_Detection_Plus/tests/unit_test_results_${{ steps.timestamp.outputs.date }}.xml" || true
+
+  # deployment:
+  #   needs: implementing_tests #← change with your pref 
+  #   runs-on: ubuntu-latest
+  #   steps:
+  #     - uses: actions/checkout@v3
+
+  #     - name: Install dependencies for Streamlit #← change with your pref 
+  #       run: pip install huggingface_hub
+
+  #     - name: Deploy Streamlit to Hugging Face Spaces #← change with your pref 
+  #       run: |
+  #         python -c "
+  #         from huggingface_hub import HfApi
+  #         api = HfApi(token='${{ secrets.HF_TOKEN }}')
+  #         api.upload_folder(
+  #             folder_path='./Bloc4 - Final project/Projet/Architecture/App/Dockers/streamlit', 
+  #             repo_id='DavidRambeau/bloc3_Streamlit',
+  #             repo_type='space'
+  #         )
+  #         "
