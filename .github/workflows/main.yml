@@ -53,9 +53,6 @@ jobs:
           export MLFLOW_MODEL_URI="${{ secrets.MLFLOW_MODEL_URI }}"
           export MLFLOW_TRACKING_URI="${{ secrets.MLFLOW_TRACKING_URI }}"
 
- 
-
-
           # Run tests
           pytest "tests/" \
             # --html="unit_test_report_${{ steps.timestamp.outputs.date }}.html" \
@@ -64,23 +61,23 @@ jobs:
             --tb=short \
             --junit-xml="unit_test_results_${{ steps.timestamp.outputs.date }}.xml" || true
 
-  # deployment:
-  #   needs: implementing_tests #← change with your pref 
-  #   runs-on: ubuntu-latest
-  #   steps:
-  #     - uses: actions/checkout@v3
+  deployment:
+    needs: implementing_tests 
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v3
 
-  #     - name: Install dependencies for Streamlit #← change with your pref 
-  #       run: pip install huggingface_hub
+      - name: Install 
+        run: pip install huggingface_hub
 
-  #     - name: Deploy Streamlit to Hugging Face Spaces #← change with your pref 
-  #       run: |
-  #         python -c "
-  #         from huggingface_hub import HfApi
-  #         api = HfApi(token='${{ secrets.HF_TOKEN }}')
-  #         api.upload_folder(
-  #             folder_path='./Bloc4 - Final project/Projet/Architecture/App/Dockers/streamlit', 
-  #             repo_id='DavidRambeau/bloc3_Streamlit',
-  #             repo_type='space'
-  #         )
-  #         "
+      - name: Deploy
+        run: |
+          python -c "
+          from huggingface_hub import HfApi
+          api = HfApi(token='${{ secrets.HF_TOKEN }}')
+          api.upload_folder(
+              folder_path='./app', 
+              repo_id='cpellerin/mlflow-christophe-fraud',
+              repo_type='space'
+          )
+          "
