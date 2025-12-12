@@ -49,7 +49,7 @@ jobs:
           export AWS_DEFAULT_REGION="${{ secrets.AWS_DEFAULT_REGION }}" 
 
           # Run tests
-          pytest "Bloc_4_Fraud_Detection_Plus/tests/" \
+          pytest "tests/" \
             # --html="unit_test_report_${{ steps.timestamp.outputs.date }}.html" \
             # --self-contained-html \
             -v -s \
