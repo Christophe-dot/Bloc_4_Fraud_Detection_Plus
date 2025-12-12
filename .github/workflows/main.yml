@@ -50,11 +50,11 @@ jobs:
 
           # Run tests
           pytest "Bloc_4_Fraud_Detection_Plus/tests/" \
-            # --html="Bloc_4_Fraud_Detection_Plus/tests/unit_test_report_${{ steps.timestamp.outputs.date }}.html" \
+            # --html="unit_test_report_${{ steps.timestamp.outputs.date }}.html" \
             # --self-contained-html \
             -v -s \
             --tb=short \
-            --junit-xml="Bloc_4_Fraud_Detection_Plus/tests/unit_test_results_${{ steps.timestamp.outputs.date }}.xml" || true
+            --junit-xml="unit_test_results_${{ steps.timestamp.outputs.date }}.xml" || true
 
   # deployment:
   #   needs: implementing_tests #← change with your pref 
