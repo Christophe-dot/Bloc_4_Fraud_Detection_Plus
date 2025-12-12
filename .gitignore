@@ -1,0 +1,16 @@
+.pytest_cache
+.venv
+app/__pycache__
+app/run.sh
+data/
+EDA/
+tests/__pycache__
+tests/.pytest_cache
+.env
+README_cicd.md
+README_hf.md
+README_mlflow.md
+README_ref.md
+README_tests.md
+README.md
+run.sh
