@@ -5,8 +5,8 @@ import os
 sys.path.append(os.path.dirname(os.path.dirname(os.path.abspath(__file__))))
 
 import pandas as pd
-from app_backup.transform import build_features_from_transaction, predict_fraud
-from app_backup.load_model import load_mlflow_model
+from app.transform import build_features_from_transaction, predict_fraud
+from app.load_model import load_mlflow_model
 import logging
 
 # Log infos

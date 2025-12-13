@@ -7,7 +7,7 @@ sys.path.append(os.path.dirname(os.path.dirname(os.path.abspath(__file__))))
 import os
 import requests
 from dotenv import find_dotenv, load_dotenv
-from app_backup.extract import extract, get_api
+from app.extract import extract, get_api
 import logging
 
 # Charger le .env

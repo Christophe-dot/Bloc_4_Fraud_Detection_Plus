@@ -4,7 +4,7 @@ import sys
 import os
 sys.path.append(os.path.dirname(os.path.dirname(os.path.abspath(__file__))))
 
-from app_backup.load_model import load_mlflow_model
+from app.load_model import load_mlflow_model
 import logging
 
 # Log infos
