@@ -19,3 +19,6 @@ fastAPIserver/
 streamlit/server
 mlflow/
 streamlit/
+test.json
+Architecture.png
+Frauds_2000.png
