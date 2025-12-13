@@ -4,7 +4,7 @@ FROM python:3.10
 WORKDIR /home
 
 # Copy the current directory contents into the container at /app
-COPY app_backup/ /home/app
+COPY app/ /home/app
 COPY tests/ /home/tests
 
 
