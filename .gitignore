@@ -7,8 +7,6 @@ mlflow/
 mlflowserver/
 streamlit/
 streamlitserver/
-tests/__pycache__
-tests/.pytest_cache
 .env
 Architecture.png
 Frauds_2000.png
