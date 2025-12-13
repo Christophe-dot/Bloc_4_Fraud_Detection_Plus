@@ -1,6 +1,4 @@
-.pytest_cache
 .venv
-app_backup/
 data/
 fastAPIserver/
 mlflow/
