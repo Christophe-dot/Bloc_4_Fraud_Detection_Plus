@@ -50,7 +50,7 @@ jobs:
           export AWS_SECRET_ACCESS_KEY="${{ secrets.AWS_SECRET_ACCESS_KEY }}"
           export BACKEND_STORE_URI="${{ secrets.BACKEND_STORE_URI }}"
           export HF_TOKEN="${{ secrets.HF_TOKEN }}"     
-          export MLFLOW_MODEL_URI="${{ secrets.MLFLOW_MODEL_URI }}"
+          export MODEL_URI="${{ secrets.MODEL_URI }}"
           export MLFLOW_TRACKING_URI="${{ secrets.MLFLOW_TRACKING_URI }}"
 
           # Run tests
