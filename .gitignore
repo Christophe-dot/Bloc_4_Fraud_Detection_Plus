@@ -15,3 +15,7 @@ README_tests.md
 #README.md
 run.sh
 mlflowserver/
+fastAPIserver/
+streamlit/server
+mlflow/
+streamlit/

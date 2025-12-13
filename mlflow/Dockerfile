@@ -1,4 +1,4 @@
-FROM python:3.10
+FROM python:3.10-slim
 
 WORKDIR /home/app
 
@@ -22,7 +22,9 @@ ENV AWS_SECRET_ACCESS_KEY=$AWS_SECRET_ACCESS_KEY
 ENV BACKEND_STORE_URI=$BACKEND_STORE_URI
 ENV ARTIFACT_ROOT=$ARTIFACT_ROOT
 
-CMD mlflow server -p $PORT \
+EXPOSE 4000
+
+CMD mlflow server -p 4000 \
     --host 0.0.0.0 \
     --backend-store-uri $BACKEND_STORE_URI \
     --default-artifact-root $ARTIFACT_ROOT

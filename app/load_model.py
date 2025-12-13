@@ -12,9 +12,9 @@ load_dotenv(env_path, override=True)
 logging.basicConfig(level=logging.INFO, format="%(asctime)s - %(levelname)s - %(message)s")
 
 # === MLFlow ===
-MLFLOW_TRACKING_URI = os.getenv("MLFLOW_TRACKING_URI", "http://0.0.0.0:4000")
+MLFLOW_TRACKING_URI = os.getenv("MLFLOW_TRACKING_URI")
 #MLFLOW_MODEL_URI = os.getenv("MLFLOW_MODEL_URI")
-MODEL_URI = os.getenv("MLFLOW_MODEL_URI", "models:/fraud_detector_RFC_@production")
+MODEL_URI = os.getenv("MODEL_URI")
 
 
 # === LOAD MODEL from MLFlow function ===
@@ -25,3 +25,4 @@ def load_mlflow_model(tracking_uri: str = MLFLOW_TRACKING_URI, model_uri: str = 
     model = mlflow.sklearn.load_model(model_uri)
     logging.info("✅ Modèle récupéré depuis MLflow")
     return model
+
