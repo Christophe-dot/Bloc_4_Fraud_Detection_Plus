@@ -77,7 +77,7 @@ jobs:
           api = HfApi(token='${{ secrets.HF_TOKEN }}')
           api.upload_folder(
               folder_path='./', 
-              repo_id='cpellerin/mlflow-christophe-fraud',
+              repo_id='cpellerin/API',
               repo_type='space'
           )
           "
