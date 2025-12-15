@@ -42,3 +42,6 @@ def test_extract():
 
     logging.info("✅ Test API transactions OK : status 200 + JSON valide + fonction interne OK")
 
+
+
+
