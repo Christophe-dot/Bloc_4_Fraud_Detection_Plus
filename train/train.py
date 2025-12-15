@@ -46,7 +46,7 @@ if __name__ == "__main__":
 
     # Import data
     print("🏃 Loading dataset...")
-    data = pd.read_csv("C:/Users/Jedha1/Desktop/Bloc_3_Fraud_Detection/data/fraudTest.csv", index_col=0)
+    data = pd.read_csv("C:/Users/Jedha1/Desktop/Bloc_4_Fraud_Detection_Plus/data/fraudTest.csv", index_col=0)
     data = data.astype({col: "float64" for col in data.select_dtypes(include=["int"]).columns})
 
     # Imbalanced dataset!!!

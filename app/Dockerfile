@@ -1,4 +1,4 @@
-FROM python:3.10
+FROM python:3.10-slim
 
 # Dossier de travail dans le conteneur
 WORKDIR /home/app

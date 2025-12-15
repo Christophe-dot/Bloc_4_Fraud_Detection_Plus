@@ -18,10 +18,7 @@ jobs:
       - name: Install dependencies
         run: |
           pip install --upgrade pip 
-          pip install pytest httpx psycopg2-binary python-dotenv
-          pip install boto3 botocore 
-          pip install mlflow scikit-learn pandas numpy 
-          pip install -r "requirements.txt" 
+          pip install -r "tests/requirements.txt" 
 
       - name: Debug environment
         run: | 

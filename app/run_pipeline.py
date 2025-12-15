@@ -1,10 +1,7 @@
 from dotenv import find_dotenv, load_dotenv
 import os
 import boto3
-
 import logging
-import mlflow
-
 from extract import extract
 from load_model import load_mlflow_model
 from transform import (

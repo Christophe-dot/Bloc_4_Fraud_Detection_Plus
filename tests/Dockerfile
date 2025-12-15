@@ -1,4 +1,4 @@
-FROM python:3.10
+FROM python:3.10-slim
 
 # Set the working directory in the container
 WORKDIR /home
@@ -14,5 +14,6 @@ COPY tests/ /home/tests
 RUN pip install -r tests/requirements.txt
 
 ENV PYTHONPATH=/home
+
 # Command to run the application
 CMD ["pytest", "tests/"]
